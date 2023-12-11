@@ -1,0 +1,18 @@
+---
+version: '3'
+
+services:
+  syncthing-relay-discovery:
+    container_name: syncthing-relay-discovery
+    restart: always
+    image: t4skforce/syncthing-relay-discovery:latest
+    environment:
+      RATE_GLOBAL: '0'
+      RATE_SESSION: '0'
+      PROVIDED_BY: "Pretty Name Here"
+      POOLS: "https://relays.syncthing.net/endpoint"
+      DISC_OPTS: '-debug'
+    ports:
+      - 22026:22026 # Discovery Server
+      - 22067:22067 # Relay Server - Main Port
+      - 22070:22070 # Relay Server Optional Statistics port for public relays pool

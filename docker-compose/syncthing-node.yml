@@ -1,0 +1,19 @@
+version: "2.1"
+services:
+  syncthing:
+    image: lscr.io/linuxserver/syncthing:latest
+    container_name: syncthing-node
+    hostname: syncthing #optional
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /path/to/syncthing-data/config:/config
+      - /path/to/sync:/sync
+    ports:
+      - 8384:8384
+      - 22000:22000/tcp #Node Port <Port Forward>
+      - 22000:22000/udp #Node Port <Port Forward>
+      - 21027:21027/udp #Local Port
+    restart: unless-stopped

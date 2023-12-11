@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  apache:
+    image: httpd:latest
+    container_name: offlineservices
+    ports:
+    - 8585:80
+    volumes:
+    - /path/to/www:/usr/local/apache2/htdocs
+    - /path/to/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf #Optional, might want to make a of the Original file without this included fist then restore this line.
+    restart: unless-stopped
